@@ -6,7 +6,7 @@ package dev.lvstrng.argon.modules.setting.settings;
 
 import dev.lvstrng.argon.modules.setting.Setting;
 
-public final class BooleanSetting extends Setting<BooleanSetting> {
+public class BooleanSetting extends Setting<BooleanSetting> {
     private boolean value;
 
     public BooleanSetting(final CharSequence name, final boolean value) {

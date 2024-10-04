@@ -8,7 +8,7 @@ import javax.crypto.Cipher;
 import java.security.Key;
 
 public class Encryption {
-    private String field476;
+    /*private String field476;
     private Key field477;
     private Cipher field478;
 
@@ -26,5 +26,5 @@ public class Encryption {
 
     public native void method351(final String val) throws Exception;
 
-    public native String method352();
+    public native String method352();*/
 }

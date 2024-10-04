@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin({BufferRenderer.class})
 public interface BufferRendererAccessor {
-    @Accessor("currentVertexBuffer")
+    /*@Accessor("currentVertexBuffer")
     default void setCurrentVertexBuffer(final VertexBuffer vertexBuffer) {
-    }
+    }*/
 }

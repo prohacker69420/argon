@@ -32,7 +32,7 @@ public final class BooleanComponent extends SettingComponent {
         super.method46(context, mouseX, mouseY, delta);
         final int n2 = n;
         FontRenderer.drawText(this.field51.getName(), context, this.method49() + 31, this.method50() + this.method53() + this.field41 + 6, new Color(245, 245, 245, 255).getRGB());
-        context.fillGradient(this.method49() + 5, this.method50() + this.method53() + this.field41 + 5, this.method49() + 25, this.method50() + this.method53() + this.field41 + this.method52() - 5, Authentication.method331(255, this.field39.field448.indexOf(this)).getRGB(), Authentication.method331(255, this.field39.field448.indexOf(this) + 1).getRGB());
+        context.fillGradient(this.method49() + 5, this.method50() + this.method53() + this.field41 + 5, this.method49() + 25, this.method50() + this.method53() + this.field41 + this.method52() - 5, Authentication.method331(255, this.field39.settings.indexOf(this)).getRGB(), Authentication.method331(255, this.field39.settings.indexOf(this) + 1).getRGB());
         DrawContext drawContext = context;
         final int n3 = this.method49() + 7;
         final int n4 = this.method50() + this.method53() + this.field41 + 7;
@@ -50,7 +50,7 @@ public final class BooleanComponent extends SettingComponent {
                 final int n9 = this.method49() + 21;
                 final int n10 = this.method50() + this.method53() + this.field41 + this.method52() - 9;
                 if (this.field51.getValue()) {
-                    n11 = Authentication.method331(255, this.field39.field448.indexOf(this)).getRGB();
+                    n11 = Authentication.method331(255, this.field39.settings.indexOf(this)).getRGB();
                     break Label_0334;
                 }
                 final Color darkGray2 = Color.darkGray;
@@ -60,14 +60,14 @@ public final class BooleanComponent extends SettingComponent {
         final int method42 = this.field51.getValue() ? 1 : 0;
         if (n2 == 0) {
             if (method42 != 0) {
-                Authentication.method331(255, this.field39.field448.indexOf(this) + 1).getRGB();
+                Authentication.method331(255, this.field39.settings.indexOf(this) + 1).getRGB();
             } else {
                 Color.darkGray.getRGB();
             }
         }
         drawContext.fillGradient(n3, n4, n5, n6, n11, method42);
         int field539;
-        final int n12 = field539 = (this.field39.field449.field539 ? 1 : 0);
+        final int n12 = field539 = (this.field39.parent.field539 ? 1 : 0);
         if (n2 == 0) {
             if (n12 != 0) {
                 return;

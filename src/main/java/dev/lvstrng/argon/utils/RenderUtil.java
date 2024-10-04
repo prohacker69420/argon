@@ -277,8 +277,8 @@ public final class RenderUtil {
         GL11.glDepthFunc(515);
         RenderSystem.disableBlend();
         if (ClickGui.msaaSetting.getValue()) {
-            GL11.glDisable(2848);
-            GL11.glDisable(32925);
+//            GL11.glDisable(2848);
+//            GL11.glDisable(32925);
         }
         matrices.pop();
     }

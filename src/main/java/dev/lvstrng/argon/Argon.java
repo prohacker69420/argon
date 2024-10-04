@@ -21,11 +21,13 @@ public final class Argon {
 
     public Argon() {
         INSTANCE = this;
+        mc = MinecraftClient.getInstance();
         this.screen = null;
         this.EVENT_BUS = new EventBus();
         this.CONFIG_MANAGER = new ConfigManager();
         this.MODULE_MANAGER = new ModuleManager();
         this.ROTATION_MANAGER = new RotationManager();
+        this.clickGUI = new ClickGUI();
     }
 
     public RotationManager getRotationManager() {
