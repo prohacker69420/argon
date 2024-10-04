@@ -38,23 +38,23 @@ public abstract class SettingComponent {
     }
 
     public int method49() {
-        return this.field39.field449.method443();
+        return this.field39.parent.privX();
     }
 
     public int method50() {
-        return this.field39.field449.method444();
+        return this.field39.parent.privY();
     }
 
     public int method51() {
-        return this.field39.field449.method450();
+        return this.field39.parent.method450();
     }
 
     public int method52() {
-        return this.field39.field449.method451();
+        return this.field39.parent.method451();
     }
 
     public int method53() {
-        return this.field39.field451;
+        return this.field39.offset;
     }
 
     public void method46(final DrawContext context, final int mouseX, final int mouseY, final float delta) {
@@ -84,7 +84,7 @@ public abstract class SettingComponent {
             class14 = this;
         }
         if (n2 == 0) {
-            if (class14.field39.field449.field539) {
+            if (class14.field39.parent.field539) {
                 return;
             }
             class13 = this;

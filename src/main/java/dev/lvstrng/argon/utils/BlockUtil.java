@@ -26,7 +26,7 @@ public final class BlockUtil {
         return isBlockType(pos, Blocks.RESPAWN_ANCHOR) && Argon.mc.world.getBlockState(pos).get(RespawnAnchorBlock.CHARGES) == 0;
     }
 
-    public static Stream method260(final BlockPos from, final BlockPos to) {
+    public static Stream<BlockPos> method260(final BlockPos from, final BlockPos to) {
         final BlockPos seed = new BlockPos(Math.min(from.getX(), to.getX()), Math.min(from.getY(), to.getY()), Math.min(from.getZ(), to.getZ()));
         final BlockPos blockPos = new BlockPos(Math.max(from.getX(), to.getX()), Math.max(from.getY(), to.getY()), Math.max(from.getZ(), to.getZ()));
         return Stream.iterate(seed, lol -> method261(from, to, blockPos)).limit((long) (blockPos.getX() - seed.getX() + 1) * (blockPos.getY() - seed.getY() + 1) * (blockPos.getZ() - seed.getZ() + 1));

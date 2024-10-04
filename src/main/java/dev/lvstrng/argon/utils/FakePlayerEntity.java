@@ -4,10 +4,55 @@
 
 package dev.lvstrng.argon.utils;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
+import com.mojang.authlib.GameProfile;
+import dev.lvstrng.argon.Argon;
+import dev.lvstrng.argon.mixin.LivingEntityAccessor;
+import dev.lvstrng.argon.mixin.OtherClientPlayerEntityAccessor;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.Blocks;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.OtherClientPlayerEntity;
+import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.WolfEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.registry.tag.EntityTypeTags;
+import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.GlobalPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @SuppressWarnings("all")
 // nobody cares about this lol
-public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
-    /*private final List field442;
+public class FakePlayerEntity extends OtherClientPlayerEntity {
+    private final List field442;
     public boolean field440;
     public boolean field441;
     boolean field443;
@@ -32,7 +77,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
         createPlayerAttributes();
         this.copyPositionAndRotation((Entity) player);
         this.resetPosition();
-        this.dataTracker.set(PlayerEntity.PLAYER_MODEL_PARTS, (Object) player.getDataTracker().get(PlayerEntity.PLAYER_MODEL_PARTS));
+        this.dataTracker.set(PlayerEntity.PLAYER_MODEL_PARTS, player.getDataTracker().get(PlayerEntity.PLAYER_MODEL_PARTS));
         this.getAttributes().setFrom(player.getAttributes());
         final int n2 = n;
         this.setPose(player.getPose());
@@ -64,8 +109,8 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
     }
 
     public void method275() {
-        Argon.mc.world.removeEntity(this.getId(), Entity$RemovalReason.DISCARDED);
-        this.setRemoved(Entity$RemovalReason.DISCARDED);
+        Argon.mc.world.removeEntity(this.getId(), RemovalReason.DISCARDED);
+        this.setRemoved(RemovalReason.DISCARDED);
     }
 
     @Nullable
@@ -243,7 +288,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
                 if (b2 && getMemories != null) {
                     this.playSound(getMemories, this.getSoundVolume(), this.getSoundPitch());
                 }
-                Argon.INSTANCE.getModuleManager().getModuleByClass(Class56.class).setEnabled(false);
+                Argon.INSTANCE.getModuleManager().getModuleByClass(FakePlayerEntity.class).setEnabled(false);
                 this.dropInventory();
             }
         } else if (b2) {
@@ -252,7 +297,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
         final boolean b3 = !b || amount > 0.0f;
         if (b3) {
             ((LivingEntityAccessor) this).setLastDamageSource(source);
-            ((LivingEntityAccessor) this).setLastDamageTime(this.method_48926().getTime());
+            ((LivingEntityAccessor) this).setLastDamageTime(this.clientWorld.getTime());
         }
         if (attacker2 instanceof final ServerPlayerEntity serverPlayerEntity) {
             Criteria.PLAYER_HURT_ENTITY.trigger(serverPlayerEntity, this, source, n, amount, b);
@@ -296,7 +341,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
                         if (shouldDisplaySoulSpeedEffects) {
                             this.displaySoulSpeedEffects();
                         }
-                        this.method_48926().getProfiler().push("livingEntityBaseTick");
+                        this.clientWorld.getProfiler().push("livingEntityBaseTick");
                         class94 = this;
                         if (n2 != 0) {
                             break Label_0162;
@@ -309,7 +354,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
                         final double n6;
                         final double n5;
                         final double n4;
-                        n3 = (n4 = (n5 = (n6 = (n7 = (n8 = (this.method_48926().isClient ? 1 : 0))))));
+                        n3 = (n4 = (n5 = (n6 = (n7 = (n8 = (clientWorld.isClient ? 1 : 0))))));
                         if (n2 != 0) {
                             break Label_0169;
                         }
@@ -337,7 +382,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
                     double n4;
                     double n12;
                     double n11;
-                    final double n10 = n11 = (n12 = (n4 = (n5 = (n6 = (n7 = (n8 = (this.method_48926().isClient ? 1 : 0)))))));
+                    final double n10 = n11 = (n12 = (n4 = (n5 = (n6 = (n7 = (n8 = (this.clientWorld.isClient ? 1 : 0)))))));
                     boolean contains = false;
                     Label_0336:
                     {
@@ -354,13 +399,13 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
                                                 break Label_0329;
                                             }
                                         }
-                                        contains = tMinecraftClient.getInstance().world.getWorldBorder().contains(this.getBoundingBox());
+                                        contains = MinecraftClient.getInstance().world.getWorldBorder().contains(this.getBoundingBox());
                                     }
                                     if (n2 != 0) {
                                         break Label_0336;
                                     }
                                     if (n13 == 0) {
-                                        final double n15 = MinecraftClient.getInstance().world.getWorldBorder().getDistanceInsideBorder((Entity) this) + this.method_48926().getWorldBorder().getSafeZone();
+                                        /*final double n15 = MinecraftClient.getInstance().world.getWorldBorder().getDistanceInsideBorder((Entity) this) + this.method_48926().getWorldBorder().getSafeZone();
                                         final double n16 = n14 = (n11 = (n12 = (n4 = (n5 = (n6 = (n7 = (n8 = dcmpg(n15, 0.0))))))));
                                         if (n2 != 0) {
                                             break Label_0336;
@@ -374,7 +419,7 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
                                             if (n17 > 0) {
                                                 this.method279(this.getDamageSources().outsideBorder(), (float) Math.max(1, MathHelper.floor(-n15 * damagePerBlock)));
                                             }
-                                        }
+                                        }*/
                                     }
                                 }
                             }
@@ -743,5 +788,5 @@ public class FakePlayerEntity /*extends OtherClientPlayerEntity*/ {
     public void method285(final float yaw) {
         super.animateDamage(yaw);
         this.damageTiltYaw = yaw;
-    }*/
+    }
 }

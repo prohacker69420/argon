@@ -54,8 +54,8 @@ public final class ClickGUI extends Screen {
             mouseY *= (int) MinecraftClient.getInstance().getWindow().getScaleFactor();
             super.render(context, mouseX, mouseY, delta);
             for (final CategoryComponent class120 : this.components) {
-                class120.method435(context, mouseX, mouseY, delta);
-                class120.method447(mouseX, mouseY, delta);
+                class120.render(context, mouseX, mouseY, delta);
+                class120.postRender(mouseX, mouseY, delta);
             }
             RenderUtil.stopDrawing();
         }

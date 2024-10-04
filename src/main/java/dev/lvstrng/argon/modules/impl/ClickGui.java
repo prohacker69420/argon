@@ -13,6 +13,7 @@ import dev.lvstrng.argon.modules.setting.settings.IntSetting;
 import dev.lvstrng.argon.utils.AnimationType;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.network.packet.s2c.play.OpenScreenS2CPacket;
+import org.lwjgl.glfw.GLFW;
 
 public final class ClickGui extends Module implements PacketReceiveListener {
     public static IntSetting colorRed;
@@ -28,7 +29,7 @@ public final class ClickGui extends Module implements PacketReceiveListener {
     public static BooleanSetting customFontSetting;
 
     public ClickGui() {
-        super("Click Gui", "Click Gui", 345, Category.CLIENT);
+        super("Click Gui", "Click Gui", GLFW.GLFW_KEY_RIGHT_CONTROL, Category.CLIENT);
 
         colorRed = new IntSetting("Red", 0, 255, 255, 1).setDescription("The red colour of the GUI");
         colorGreen = new IntSetting("Green", 0, 255, 0, 1).setDescription("The green colour of the GUI");
@@ -38,7 +39,12 @@ public final class ClickGui extends Module implements PacketReceiveListener {
         backgroundSetting = new BooleanSetting("Background", false).setDescription("Renders the background of the Click Gui");
         preventCloseSetting = new BooleanSetting("Prevent Close", true).setDescription("For servers with freeze plugins that don't let you open the GUI");
         roundnessSetting = new IntSetting("Roundness", 1, 10, 5, 1).setDescription("The roundness of the GUI");
-        customFontSetting = new BooleanSetting("Custom Font", true).setDescription("Use a custom font for the GUI");
+        customFontSetting = new BooleanSetting("Custom Font", false){
+            @Override
+            public boolean getValue() {
+                return false;
+            }
+        }.setDescription("Use a custom font for the GUI");
         animations = new EnumSetting("Animations", AnimationType.OFF, AnimationType.class).setDescription("The style of the animations");
         msaaSetting = new BooleanSetting("MSAA", true).setDescription("Anti Aliasing | This can impact performance if you're using tracers but gives them a smoother look");
 

@@ -1,7 +1,22 @@
 package dev.lvstrng.argon.modules.impl;
 
+import dev.lvstrng.argon.event.events.PacketSendEvent;
+import dev.lvstrng.argon.event.events.Render2DEvent;
+import dev.lvstrng.argon.event.listeners.PacketSendListener;
+import dev.lvstrng.argon.event.listeners.Render2DListener;
+import dev.lvstrng.argon.modules.Category;
+import dev.lvstrng.argon.modules.Module;
+import dev.lvstrng.argon.modules.setting.Setting;
+import dev.lvstrng.argon.modules.setting.settings.BooleanSetting;
+import dev.lvstrng.argon.utils.FakePlayerEntity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.command.argument.EntityAnchorArgumentType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
+
 //useless
-public final class FakePlayer { /*extends Module implements PacketSendListener, Render2DListener {
+public final class FakePlayer extends Module implements PacketSendListener, Render2DListener {
     private final BooleanSetting stareSetting;
     public FakePlayerEntity fakePlayerEntity;
 
@@ -56,5 +71,5 @@ public final class FakePlayer { /*extends Module implements PacketSendListener, 
         if (this.stareSetting.getValue() && this.fakePlayerEntity != null) {
             this.fakePlayerEntity.lookAt(EntityAnchorArgumentType.EntityAnchor.FEET, this.mc.player.getLerpedPos(this.mc.getTickDelta()));
         }
-    }*/
+    }
 }

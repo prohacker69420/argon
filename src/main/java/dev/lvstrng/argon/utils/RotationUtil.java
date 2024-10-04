@@ -25,16 +25,16 @@ public final class RotationUtil {
         return new BlockPos((int) getCameraPos().x, (int) getCameraPos().y, (int) getCameraPos().z);
     }
 
-    public static IVec3d method483(final float yaw, final float pitch) {
+    public static Vec3d method483(final float yaw, final float pitch) {
         final float n = pitch * 0.017453292f;
         final float n2 = -yaw * 0.017453292f;
         final float cos = MathHelper.cos(n2);
         final float sin = MathHelper.sin(n2);
         final float cos2 = MathHelper.cos(n);
-        return (IVec3d) new Vec3d(sin * cos2, -MathHelper.sin(n), cos * cos2);
+        return (Vec3d) new Vec3d(sin * cos2, -MathHelper.sin(n), cos * cos2);
     }
 
-    public static IVec3d method484(final PlayerEntity player) {
+    public static Vec3d method484(final PlayerEntity player) {
         return method483(player.getYaw(), player.getPitch());
     }
 
@@ -51,7 +51,7 @@ public final class RotationUtil {
         return rotation.getYaw() + rotation.getPitch();
     }
 
-    public static IVec3d method489() {
+    public static Vec3d method489() {
         return method484(Argon.mc.player);
     }
 

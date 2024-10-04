@@ -10,6 +10,9 @@ import org.lwjgl.glfw.GLFW;
 public final class KeybindTranslator {
     public static CharSequence method395(final int key) {
         switch (key) {
+            case 0 : {
+                return "None";
+            }
             case 1: {
                 return "RMB";
             }

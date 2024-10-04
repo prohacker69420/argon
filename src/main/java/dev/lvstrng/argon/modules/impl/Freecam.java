@@ -99,7 +99,7 @@ public final class Freecam extends Module implements TickListener, CameraListene
     }
 
     private boolean isKeyPressed(KeyBinding key) {
-        return GLFW.glfwGetKey(this.mc.getWindow().getHandle(), ((KeyBindingAccessor) key).getBoundKey().getCode()) == 1;
+        return GLFW.glfwGetKey(this.mc.getWindow().getHandle(), ((KeyBindingAccessor) key).getBoundKey().getCode()) == GLFW.GLFW_PRESS;
     }
 
     private void resetMovementKeys() {

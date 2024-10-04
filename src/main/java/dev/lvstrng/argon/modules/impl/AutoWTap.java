@@ -51,7 +51,7 @@ public final class AutoWTap extends Module implements PacketSendListener, Render
 
     @Override
     public void onRender2D(Render2DEvent event) {
-        if (GLFW.glfwGetKey(this.mc.getWindow().getHandle(), this.getKeybind()) != 1) {
+        if (this.getKeybind() != 0 && GLFW.glfwGetKey(this.mc.getWindow().getHandle(), this.getKeybind()) == GLFW.GLFW_PRESS) {
             this.isWTapEnabled = false;
             this.isWTapped = false;
             return;

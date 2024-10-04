@@ -5,7 +5,6 @@
 package dev.lvstrng.argon.modules.setting;
 
 public abstract class Setting<T> {
-    public static int field24;
     public CharSequence desc;
     private CharSequence name;
 
