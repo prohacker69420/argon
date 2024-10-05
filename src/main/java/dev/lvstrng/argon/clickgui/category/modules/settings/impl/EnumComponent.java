@@ -33,7 +33,7 @@ public final class EnumComponent extends SettingComponent {
         FontRenderer.drawText(this.field55.getName() + ": ", context, x, this.method50() + this.method53() + this.field41 + 6, new Color(245, 245, 245, 255).getRGB());
         FontRenderer.drawText(this.field55.current().name(), context, x + FontRenderer.getTextWidth(this.field55.getName() + ": "), this.method50() + this.method53() + this.field41 + 6, new Color(245, 245, 245, 255).getRGB());
         int field539;
-        final int n3 = field539 = (this.field39.field449.field539 ? 1 : 0);
+        final int n3 = field539 = (this.field39.parent.field539 ? 1 : 0);
         if (n2 == 0) {
             if (n3 != 0) {
                 return;

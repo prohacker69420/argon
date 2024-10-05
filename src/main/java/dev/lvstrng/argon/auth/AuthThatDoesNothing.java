@@ -1,5 +1,5 @@
 package dev.lvstrng.argon.auth;
 
 public class AuthThatDoesNothing {
-    public static native void lol();
+//    public static native void lol();
 }

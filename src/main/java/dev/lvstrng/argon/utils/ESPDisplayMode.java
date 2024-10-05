@@ -1,7 +1,7 @@
 package dev.lvstrng.argon.utils;
 
 public enum ESPDisplayMode {
-    FIELD_432("????");
+    Normal("????");
 
     public final String name;
 

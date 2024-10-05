@@ -1,8 +1,28 @@
 package dev.lvstrng.argon.modules.impl;
 
+import dev.lvstrng.argon.event.events.MouseMoveEvent;
+import dev.lvstrng.argon.event.events.Render2DEvent;
+import dev.lvstrng.argon.event.listeners.MouseMoveListener;
+import dev.lvstrng.argon.event.listeners.Render2DListener;
+import dev.lvstrng.argon.modules.Category;
+import dev.lvstrng.argon.modules.Module;
+import dev.lvstrng.argon.modules.setting.Setting;
+import dev.lvstrng.argon.modules.setting.settings.BooleanSetting;
+import dev.lvstrng.argon.modules.setting.settings.EnumSetting;
+import dev.lvstrng.argon.modules.setting.settings.IntSetting;
+import dev.lvstrng.argon.utils.*;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.SwordItem;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+
 // THis module sucks
-public final class AimAssist /*extends Module implements Render2DListener, MouseMoveListener*/ {
-    /*private final BooleanSetting stickyAim;
+public final class AimAssist extends Module implements Render2DListener, MouseMoveListener {
+    private final BooleanSetting stickyAim;
     private final BooleanSetting onlyWeapon;
     private final EnumSetting aimAt;
     private final BooleanSetting stopAtTarget;
@@ -22,11 +42,21 @@ public final class AimAssist /*extends Module implements Render2DListener, Mouse
     boolean canAim;
 
     enum AimType {
-        Head("Head");
+        Head("Head"),
+        Body("Body"),
 
-        public final String name;
+        ;public final String name;
         AimType(final String name) {this.name = name;}
     }
+
+    enum TargetPosition {
+        Precision
+    }
+
+    enum LerpType {
+        Cubic, Linear, Smooth
+    }
+
 
     public AimAssist() {
         super("Aim Assist", "Automatically aims at players for you", 0, Category.COMBAT);
@@ -76,7 +106,7 @@ public final class AimAssist /*extends Module implements Render2DListener, Mouse
     }
 
     @Override
-    public void onRender2D(Render2DEvent event) {
+    public void onRender2D(Render2DEvent po) {
         if (this.timer.hasElapsed(this.waitOnMove.getValueInt()) && !this.canAim) {
             this.canAim = true;
             this.timer.reset();
@@ -89,8 +119,8 @@ public final class AimAssist /*extends Module implements Render2DListener, Mouse
         }
         PlayerEntity target = TargetUtil.getNearestPlayer(this.mc.player, this.radius.getValueInt(), this.seeOnly.getValue());
         if (this.stickyAim.getValue()) {
-            LivingEntity lastTarget = this.mc.player.getLastAttackedEntity();
-            if (lastTarget instanceof PlayerEntity && lastTarget.squaredDistanceTo(this.mc.player) < this.radius.getSquaredValue()) {
+            LivingEntity lastTarget = this.mc.player.getLastAttacker();
+            if (lastTarget instanceof PlayerEntity && lastTarget.squaredDistanceTo(this.mc.player) < this.radius.getValue() * this.radius.getValue()) {
                 target = (PlayerEntity) lastTarget;
             }
         }
@@ -101,32 +131,32 @@ public final class AimAssist /*extends Module implements Render2DListener, Mouse
         if (crosshairTarget instanceof EntityHitResult && ((EntityHitResult) crosshairTarget).getEntity() == target && this.stopAtTarget.getValue()) {
             return;
         }
-        Vec3d targetVec = this.posMode.isPrecise() ? target.getEyePos() : target.getPos(this.mc.getTickDelta());
-        if (this.aimAt.isHead()) {
+        Vec3d targetVec = this.posMode.is(TargetPosition.Precision) ? target.getEyePos() : target.getLerpedPos(this.mc.getTickDelta());
+        if (this.aimAt.is(AimType.Head)) {
             targetVec = targetVec.add(0.0, -0.5, 0.0);
-        } else if (this.aimAt.isBody()) {
+        } else if (this.aimAt.is(AimType.Body)) {
             targetVec = targetVec.add(0.0, -1.2, 0.0);
         }
         if (this.lookAtNearest.getValue()) {
             targetVec = targetVec.add((this.mc.player.getX() - target.getX() > 0.0) ? 0.29 : -0.29, 0.0, (this.mc.player.getZ() - target.getZ() > 0.0) ? 0.29 : -0.29);
         }
-        Rotation rotation = RotationUtil.getRotationToTarget(this.mc.player, targetVec);
-        if (RotationUtil.getRotationDifference(rotation) > this.fov.getValueInt() / 2.0) {
+        Rotation rotation = RotationUtil.method490(this.mc.player, targetVec);
+        if (RotationUtil.method491(rotation) > this.fov.getValueInt() / 2.0) {
             return;
         }
         float horizontalDelta = this.horizontalSpeed.getValueInt() / 50.0f;
         float verticalDelta = this.verticalSpeed.getValueInt() / 50.0f;
         float yaw = this.mc.player.getYaw();
         float pitch = this.mc.player.getPitch();
-        if (this.lerp.isCubic()) {
+        if (this.lerp.is(LerpType.Cubic)) {
             yaw = (float) this.cubicLerp(horizontalDelta, this.mc.player.getYaw(), rotation.getYaw());
             pitch = (float) this.cubicLerp(verticalDelta, this.mc.player.getPitch(), rotation.getPitch());
         }
-        if (this.lerp.isLinear()) {
-            yaw = this.linearLerp(horizontalDelta, this.mc.player.getYaw(), rotation.getYaw());
-            pitch = this.linearLerp(verticalDelta, this.mc.player.getPitch(), rotation.getPitch());
+        if (this.lerp.is(LerpType.Linear)) {
+            yaw = this.linearLerp(horizontalDelta, this.mc.player.getYaw(), (float) rotation.getYaw());
+            pitch = this.linearLerp(verticalDelta, this.mc.player.getPitch(), (float) rotation.getPitch());
         }
-        if (this.lerp.isSmooth()) {
+        if (this.lerp.is(LerpType.Smooth)) {
             yaw = (float) smoothLerp(this.mc.player.getYaw(), rotation.getYaw(), horizontalDelta * this.mc.getLastFrameDuration());
             pitch = (float) smoothLerp(this.mc.player.getPitch(), rotation.getPitch(), verticalDelta * this.mc.getLastFrameDuration());
         }
@@ -153,5 +183,5 @@ public final class AimAssist /*extends Module implements Render2DListener, Mouse
     public void onMouseMove(MouseMoveEvent event) {
         this.canAim = false;
         this.timer.reset();
-    }*/
+    }
 }

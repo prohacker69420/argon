@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public final class EventBus {
-    private final HashMap<Class<?>, ArrayList<EventListener>> listeners;
+    private final HashMap<Class<?>, ArrayList<PriorityListener>> listeners;
 
     public EventBus() {
         this.listeners = new HashMap<>();
@@ -20,14 +20,17 @@ public final class EventBus {
     }
 
     private void callListeners(final Event event) {
-        final ArrayList<EventListener> listeners = this.listeners.get(event.getClazz());
-        if (listeners == null || listeners.isEmpty()) return;
+        final ArrayList<PriorityListener> listeners = this.listeners.getOrDefault(event.getClazz(), new ArrayList<>());
+        if (listeners.isEmpty()) return;
 
-        final ArrayList<EventListener> list = new ArrayList<>(listeners);
+        final ArrayList<PriorityListener> list = new ArrayList<>(listeners);
         list.removeIf(Objects::isNull);
-        list.sort(Comparator.comparingInt(listener -> ((PriorityListener) listener).getPriority()));
-
-        event.callListeners(list);
+        list.sort(Comparator.comparingInt(PriorityListener::getPriority));
+        final ArrayList<EventListener> eventListeners = new ArrayList<>();
+        for (PriorityListener pl : list) {
+            eventListeners.add(pl.getListener());
+        }
+        event.callListeners(eventListeners);
     }
 
     public void registerPriorityListener(final Class<?> type, final EventListener listener) {
@@ -35,12 +38,12 @@ public final class EventBus {
     }
 
     public void register(final Class<?> type, final EventListener listener, final int priority) {
-        final ArrayList<EventListener> list = this.listeners.computeIfAbsent(type, k -> new ArrayList<>());
+        final ArrayList<PriorityListener> list = this.listeners.computeIfAbsent(type, k -> new ArrayList<>());
         list.add(new PriorityListener(listener, priority));
     }
 
     public void unregister(final Class<?> type, final EventListener listener) {
-        final ArrayList<EventListener> list = this.listeners.get(type);
-        if (list != null) list.remove(listener);
+        final ArrayList<PriorityListener> list = this.listeners.get(type);
+        if (list != null) list.removeIf(l -> l.getListener() == listener);
     }
 }

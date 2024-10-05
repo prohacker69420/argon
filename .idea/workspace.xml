@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c75811c-acd1-4c32-a398-50f9a8bf1110" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/Argon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/Argon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/auth/AuthConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/auth/AuthConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/auth/AuthThatDoesNothing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/auth/AuthThatDoesNothing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/auth/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/auth/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/ClickGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/ClickGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/CategoryComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/CategoryComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/ModuleComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/ModuleComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/SettingComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/SettingComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/BooleanComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/BooleanComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/EnumComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/EnumComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/IntComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/IntComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/KeybindComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/clickgui/category/modules/settings/impl/KeybindComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/event/EventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/event/EventBus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/event/events/TickEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/event/events/TickEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/managers/ModuleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/managers/ModuleManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/mixin/BufferRendererAccessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/mixin/BufferRendererAccessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/mixin/KeyboardMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/mixin/KeyboardMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/mixin/ScreenMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/mixin/ScreenMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/AimAssist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/AimAssist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/AutoDoubleHand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/AutoDoubleHand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/AutoWTap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/AutoWTap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/ClickGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/ClickGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/FakePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/FakePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/Freecam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/Freecam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/NoJumpDelay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/NoJumpDelay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/PlayerESP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/impl/PlayerESP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/setting/Setting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/setting/Setting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/setting/settings/BooleanSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/modules/setting/settings/BooleanSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/BlockUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/BlockUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/ESPDisplayMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/ESPDisplayMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/Encryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/Encryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/FakePlayerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/FakePlayerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/KeybindTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/KeybindTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/RenderUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/RenderUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/RotationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/lvstrng/argon/utils/RotationUtil.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2mxuVvQg38k3AE0h5uUguEEIzcw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jeffrey/argon&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.Minecraft Client" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c75811c-acd1-4c32-a398-50f9a8bf1110" name="Changes" comment="" />
+      <created>1728030575819</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728030575819</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

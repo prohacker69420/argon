@@ -6,6 +6,7 @@ package dev.lvstrng.argon.managers;
 
 import dev.lvstrng.argon.modules.Category;
 import dev.lvstrng.argon.modules.Module;
+import dev.lvstrng.argon.modules.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +20,70 @@ public final class ModuleManager {
         this.method590();
     }
 
-    private static native String method595(final int p0, final int p1, final int p2);
+    private static String method595(final int p0, final int p1, final int p2){return null;}
 
-    private native String method587();
+    private String method587(){return null;}
 
-    public native void method588();
+    public void method588() {
+        add(new AimAssist());
+        add(new AnchorMacro());
+        add(new AutoClicker());
+        add(new AutoCrystal());
+        add(new AutoDoubleHand());
+        add(new AutoHitCrystal());
+        add(new AutoInventoryTotem());
+        add(new AutoJumpReset());
+        add(new AutoPot());
+        add(new AutoPotRefill());
+        add(new AutoWTap());
+        add(new AutoXP());
+        add(new ClickGui());
+        add(new CrystalOptimizer());
+        add(new DoubleAnchor());
+        add(new FakeLag());
+        add(new FakePlayer());
+        add(new Freecam());
+        add(new HoverTotem());
+        add(new HUD());
+        add(new NoBounce());
+        add(new NoBreakDelay());
+        add(new NoJumpDelay());
+        add(new NoMissDelay());
+        add(new PingSpoof());
+        add(new PlayerESP());
+        add(new Prevent());
+        add(new SelfDestruct());
+        add(new ShieldDisabler());
+        add(new StorageESP());
+        add(new TargetHUD());
+        add(new TriggerBot());
+    }
 
-    public native List getModules2();
+    public List<Module> getModules2() {
+        return modules;
+    }
 
-    public native void method590();
+    //???
+    public void method590(){};
 
-    public native List getModulesInCategory(final Category category);
+    public List<Module> getModulesInCategory(final Category category) {
+        return modules.stream().filter(m -> m.getCategory() == category).toList();
+    }
 
-    public native Module getModuleByClass(final Class moduleClass);
+    public Module getModuleByClass(final Class moduleClass) {
+        for (Module m : getModules()) {
+            if (m.getClass().equals(moduleClass)) {
+                return m;
+            }
+        }
+        return null;
+    }
 
-    public native void method593(final Module module);
+    public void add(final Module module) {
+        modules.add(module);
+    }
 
-    public native List<Module> getModules();
+    public List<Module> getModules() {
+        return modules;
+    }
 }

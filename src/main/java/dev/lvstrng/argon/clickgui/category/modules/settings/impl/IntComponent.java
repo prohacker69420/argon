@@ -35,59 +35,37 @@ public final class IntComponent extends SettingComponent {
 
     @Override
     public void method56() {
-        final int n = 0;
-        this.field67 = Authentication.method331(0, this.field39.field448.indexOf(this)).darker();
-        final int n2 = n;
-        this.field68 = Authentication.method331(0, this.field39.field448.indexOf(this) + 1).darker();
+        this.field67 = Authentication.method331(0, this.field39.settings.indexOf(this)).darker();
+        this.field68 = Authentication.method331(0, this.field39.settings.indexOf(this) + 1).darker();
         IntComponent class16 = this;
         Label_0140:
         {
-            if (n2 == 0) {
-                if (this.field64 == null) {
-                    this.field64 = new Color(this.field67.getRed(), this.field67.getGreen(), this.field67.getBlue(), 0);
-                    if (n2 == 0) {
-                        break Label_0140;
-                    }
-                }
-                class16 = this;
+            if (this.field64 == null) {
+                this.field64 = new Color(this.field67.getRed(), this.field67.getGreen(), this.field67.getBlue(), 0);
+                break Label_0140;
             }
             class16.field64 = new Color(this.field67.getRed(), this.field67.getGreen(), this.field67.getBlue(), this.field64.getAlpha());
         }
         IntComponent class17 = this;
         Label_0227:
         {
-            if (n2 == 0) {
-                if (this.field65 == null) {
-                    this.field65 = new Color(this.field68.getRed(), this.field68.getGreen(), this.field68.getBlue(), 0);
-                    if (n2 == 0) {
-                        break Label_0227;
-                    }
-                }
-                class17 = this;
+            if (this.field65 == null) {
+                this.field65 = new Color(this.field68.getRed(), this.field68.getGreen(), this.field68.getBlue(), 0);
+                break Label_0227;
             }
             class17.field65 = new Color(this.field68.getRed(), this.field68.getGreen(), this.field68.getBlue(), this.field65.getAlpha());
         }
         final int alpha = this.field64.getAlpha();
         final int n3 = 255;
-        IntComponent class18 = null;
-        Label_0290:
-        {
-            if (n2 == 0) {
-                if (alpha != n3) {
-                    this.field64 = ColorUtil.method523(0.05f, 255, this.field64);
-                }
-                class18 = this;
-                if (n2 != 0) {
-                    break Label_0290;
-                }
-                this.field65.getAlpha();
-            }
-            if (alpha != n3) {
-                this.field65 = ColorUtil.method523(0.05f, 255, this.field65);
-            }
-            class18 = this;
+        if (alpha != n3) {
+            this.field64 = ColorUtil.method523(0.05f, 255, this.field64);
         }
-        class18.method56();
+        this.field65.getAlpha();
+        if (alpha != n3) {
+            this.field65 = ColorUtil.method523(0.05f, 255, this.field65);
+        }
+
+        super.method56();
     }
 
     @Override
@@ -99,7 +77,7 @@ public final class IntComponent extends SettingComponent {
         FontRenderer.drawText(this.field63.getName() + "" + this.field63.getValue(), context, this.method49() + 5, this.method50() + this.method53() + this.field41 + 6, new Color(245, 245, 245, 255).getRGB());
         final int n2 = n;
         int field539;
-        final int n3 = field539 = (this.field39.field449.field539 ? 1 : 0);
+        final int n3 = field539 = (this.field39.parent.field539 ? 1 : 0);
         if (n2 == 0) {
             if (n3 != 0) {
                 return;

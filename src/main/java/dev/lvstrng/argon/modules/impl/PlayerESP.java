@@ -28,7 +28,7 @@ public final class PlayerESP extends Module implements Render3DListener {
 
     public PlayerESP() {
         super("Player ESP", "Renders players through walls", 0, Category.RENDER);
-        this.displayMode = new EnumSetting("Mode", ESPDisplayMode.FIELD_432, ESPDisplayMode.class);
+        this.displayMode = new EnumSetting("Mode", ESPDisplayMode.Normal, ESPDisplayMode.class);
         this.alphaSetting = new IntSetting("Alpha", 0, 255, 100, 1);
         this.lineWidthSetting = new IntSetting("Line Width", 1, 10, 1, 1);
         this.tracersEnabled = new BooleanSetting("Tracers", false).setDescription("Draws a line from your player to others");
@@ -59,7 +59,7 @@ public final class PlayerESP extends Module implements Render3DListener {
     }
 
     private void renderPlayerESP(PlayerEntity playerEntity, Render3DEvent event) {
-        boolean shouldDisplay = displayMode.is(ESPDisplayMode.FIELD_432);
+        boolean shouldDisplay = displayMode.is(ESPDisplayMode.Normal);
 
         if (shouldDisplay) {
             Camera camera = mc.gameRenderer.getCamera();

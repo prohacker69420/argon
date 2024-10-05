@@ -25,7 +25,7 @@ public final class NoJumpDelay extends Module implements TickListener {
     @Override
     public void onTick() {
         if (this.mc.currentScreen != null || !this.mc.player.isOnGround()) return;
-        if (GLFW.glfwGetKey(this.mc.getWindow().getHandle(), this.getKeybind()) != 1) return;
+        if (this.getKeybind() != 0 && GLFW.glfwGetKey(this.mc.getWindow().getHandle(), this.getKeybind()) == GLFW.GLFW_RELEASE) return;
         this.mc.options.jumpKey.setPressed(false);
         this.mc.player.jump();
     }

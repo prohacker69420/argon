@@ -38,17 +38,17 @@ public class KeybindComponent extends SettingComponent {
     @Override
     public void method45(final int keyCode, final int scanCode, final int modifiers) {
         if (this.field32.isListening() && keyCode != 256) {
-            this.field39.field450.setKeybind(keyCode);
+            this.field39.module.setKeybind(keyCode);
             this.field32.setKey(keyCode);
             this.field32.setListening(false);
         }
         if (this.field32.getKey() == 259) {
-            this.field39.field450.setKeybind(0);
+            this.field39.module.setKeybind(0);
             this.field32.setKey(0);
             this.field32.setListening(false);
         }
         if (this.field32.getKey() == 256) {
-            this.field39.field450.setKeybind(this.field39.field450.getKeybind());
+            this.field39.module.setKeybind(this.field39.module.getKeybind());
             this.field32.setKey(this.field32.getKey());
             this.field32.setListening(false);
         }
@@ -81,7 +81,7 @@ public class KeybindComponent extends SettingComponent {
             FontRenderer.drawText("Listening...", context, n2, this.method50() + this.method53() + this.field41 + 6, new Color(245, 245, 245, 255).getRGB());
         }
         int field539;
-        final int n4 = field539 = (this.field39.field449.field539 ? 1 : 0);
+        final int n4 = field539 = (this.field39.parent.field539 ? 1 : 0);
         if (n3 == 0) {
             if (n4 != 0) {
                 return;
