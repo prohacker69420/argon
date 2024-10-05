@@ -10,9 +10,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public final class Authentication {
-    private static int rgb = Color.WHITE.getRGB();
     public static Color method331(final int alpha, final int increment) {
-        return new Color((alpha & 0xFF000000) | ((rgb += increment) & 0xFFFFFF));
+        return getRainbow(increment, alpha);
+    }
+
+    public static Color getRainbow(int incr, int alpha) {
+        Color color = Color.getHSBColor(((System.currentTimeMillis() + incr * 200) % (360 * 20)) / (360f * 20), 0.5f, 1f);
+        return new Color(color.getRed(), color.getBlue(), color.getGreen(), alpha);
     }
 
     public static File getArgonJar() throws URISyntaxException {
